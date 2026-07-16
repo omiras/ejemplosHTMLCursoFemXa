@@ -1,0 +1,27 @@
+body {
+    background-color: green;
+}
+
+main {
+    font-size: 14px;
+    color: white;
+}
+
+/** Selector por id */
+#ultimoparrafo {
+    font-size: 30px;
+    color: red;
+}
+
+/** Las clases son la forma más habitual de aplicar los mismos estilos a un conjuntos relacionados */
+.numeros {
+    color: firebrick;
+}
+
+.libros {
+    color: lightsalmon;
+}
+
+.derecha {
+    text-align: right;
+}

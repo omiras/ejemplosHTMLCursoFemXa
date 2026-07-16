@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Demostración de Unidades CSS: %, em y rem</title>
+    <style>
+        /* ===================================================
+           1. CONFIGURACIÓN RAÍZ (ROOT)
+           =================================================== */
+        html {
+            /* El valor base para rem. 1rem equivaldrá exactamente a 16px */
+            font-size: 16px; 
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            padding: 30px 20px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #38bdf8;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* Estilo general para las tarjetas explicativas */
+        .card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card h2 {
+            margin-top: 0;
+            color: #38bdf8;
+            border-bottom: 2px solid #334155;
+            padding-bottom: 10px;
+        }
+
+        .explanation {
+            color: #94a3b8;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        /* Área gris donde se muestra el ejemplo visual */
+        .demo-area {
+            background-color: #0f172a;
+            border: 1px dashed #475569;
+            padding: 20px;
+            border-radius: 6px;
+        }
+
+        .demo-label {
+            display: block;
+            font-size: 12px;
+            color: #64748b;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+
+        /* ===================================================
+           2. EJEMPLO DE % (Porcentaje)
+           =================================================== */
+        
+        /* El contenedor padre mide 100% de la demo-area */
+        .parent-percent {
+            background-color: #334155;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* El hijo mide el 50% de su padre directo */
+        .child-percent {
+            background-color: #38bdf8;
+            color: #0f172a;
+            font-weight: bold;
+            padding: 10px;
+            width: 50%; /* <--- EQUIVALE AL 50% DEL PADRE */
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+
+        /* ===================================================
+           3. EJEMPLO DE EM (Efecto Cascada / Multiplicación)
+           =================================================== */
+        
+        /* Definimos un tamaño de letra base en el div superior */
+        .parent-em {
+            font-size: 16px;
+            background-color: #334155;
+            padding: 15px;
+            border-radius: 4px;
+        }
+
+        /* Lista donde cada subnivel hereda y multiplica el tamaño */
+        .parent-em ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .parent-em li {
+            /* 1.3em respecto al tamaño de letra de su etiqueta contenedora (padre) */
+            font-size: 1.3em; 
+            color: #10b981;
+            margin: 5px 0;
+        }
+
+
+        /* ===================================================
+           4. EJEMPLO DE REM (Estable con la Raíz HTML)
+           =================================================== */
+        
+        .parent-rem {
+            font-size: 32px; /* Forzamos un tamaño gigante en el padre */
+            background-color: #334155;
+            padding: 15px;
+            border-radius: 4px;
+        }
+
+        /* A pesar de que el padre mide 32px, el rem ignora al padre
+           y calcula estrictamente contra los 16px del HTML (1.2 * 16px = 19.2px) */
+        .child-rem {
+            font-size: 1.2rem; /* <--- IGNORA LOS 32px DEL PADRE */
+            color: #a855f7;
+            background-color: #0f172a;
+            padding: 10px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Unidades Relativas en Acción</h1>
+
+        <div class="card">
+            <h2>1. El Porcentaje (%)</h2>
+            <p class="explanation">
+                Se calcula respecto a la medida del <strong>padre directo</strong>. Si estiras o encoges el contenedor padre, el hijo se redimensionará automáticamente para ocupar siempre la mitad (50%).
+            </p>
+            
+            <div class="demo-area">
+                <span class="demo-label">Demostración Visual</span>
+                <div class="parent-percent">
+                    <div class="child-percent">
+                        Hijo (width: 50%)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>2. El EM (Multiplicación en cascada)</h2>
+            <p class="explanation">
+                Toma como referencia el tamaño del elemento superior directo. Al anidar listas usando <code>1.3em</code>, cada nivel se vuelve un 30% más grande que el anterior de forma exponencial.
+            </p>
+            
+            <div class="demo-area">
+                <span class="demo-label">Demostración Visual</span>
+                <div class="parent-em">
+                    Letra Base (16px)
+                    <ul>
+                        <li>Nivel 1 (1.3em = 20.8px)
+                            <ul>
+                                <li>Nivel 2 (1.3em del Nivel 1 = 27px)
+                                    <ul>
+                                        <li>Nivel 3 (1.3em del Nivel 2 = 35.1px)</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>3. El REM (Inmune a la cascada)</h2>
+            <p class="explanation">
+                Ignora por completo el tamaño del elemento padre. Aunque el contenedor gris de abajo tiene un tamaño de letra gigante de <code>32px</code>, el texto morado interior usa <code>1.2rem</code>, por lo que sigue calculándose perfectamente usando los <code>16px</code> de la raíz del documento HTML.
+            </p>
+            
+            <div class="demo-area">
+                <span class="demo-label">Demostración Visual</span>
+                <div class="parent-rem">
+                    Padre con texto gigante (32px)
+                    <br><br>
+                    <div class="child-rem">
+                        Hijo (1.2rem = 19.2px)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

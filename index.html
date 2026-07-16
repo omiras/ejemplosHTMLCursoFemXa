@@ -1,0 +1,47 @@
+<!-- Directiva: significa que este documento es la versión HTML 5 -->
+<!DOCTYPE html>
+<!-- Root element, o etiqueta html a secas -->
+<html lang="es">
+<!-- Define metadatos -->
+<head>
+    <!-- Etiqueta meta sirve para definir metadatos: vamos a usar
+     accentos, la ñ-->
+    <meta charset="UTF-8">
+    <!-- Tiene que ver con que tu página Web se vea bien en el móvil (no entramos en detalle aún)-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Establece el título de tu documento, y se ve en la pestaña del navegador Web-->
+    <title>La Vanguardia</title>
+</head>
+<!-- Muestra la parte VISIBLE de tu documento Web -->
+<body>
+    <h1>COLA</h1>
+    
+    <p>¿Que pasó?</p> 
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur ldfdfdaborum rerum corrupti soluta optio. Aperiam laborum magni, repellendus quod id, asperiores cum accusamus dicta quae, porro fugit quos at nobis?</p>
+
+    <!-- lista ordenada-->
+        <!-- El atributo start tiene por valor 10-->
+     <ol start="10">
+        <li>Gatos</li>
+        <li>Perros</li>
+        <li>Pájaros</li>
+     </ol>
+
+   <!-- Crear enlaces-->
+    <p>Visite la protectora de animales de Alcarà de Henares <a href="https://www.apap-alcala.org/quienes_somos.php" target="_blank">APAP</a></p>
+
+    <h2>Animales en adopción</h2>
+    <!-- Enlace intrerno -->
+    <p>Haz clic en <a href="adopcion.html">este enlace</a> para aconocer más información sobre las mascotas que tenemos con necesidad de un hogar</p>
+    
+     <!-- insertar imágenes-->
+     <!-- El tag IMG NO TIENE closing tag -->
+    <!-- La dirección de la imagen debe ir en el atributo src (source). Debes meter una URL -->
+     <!-- el atributo alt contiene una descripcion de la imagen que muestra -->
+    <img width="200" src="https://i.etsystatic.com/58850500/r/il/d76d85/7846345879/il_794xN.7846345879_12sa.jpg" alt="gato negro y blanco ladeando la cabeza">
+
+    <!-- Imagen interna -->
+     <img width="200" src="./imagenes/gato.avif" alt="gato negro con flores blancas">
+
+</body>
+</html>

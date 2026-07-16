@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario con Selectores de Atributo</title>
+    <style>
+        /* Estilos generales del contenedor */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .form-card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            padding: 24px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 360px;
+        }
+
+        h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 20px;
+            color: #38bdf8;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            color: #94a3b8;
+            margin-bottom: 6px;
+        }
+
+        /* Estilo base para todos los inputs */
+        input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #475569;
+            background-color: #0f172a;
+            color: #ffffff;
+            font-size: 14px;
+            box-sizing: border-box;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+
+        /* ===================================================
+           APLICANDO SELECTORES DE ATRIBUTO 
+           =================================================== */
+
+        /* 1. Target exclusivo para inputs de TEXTO */
+        input[type="text"] {
+            border-left: 4px solid #38bdf8; /* Detalle azul en el lateral */
+            letter-spacing: 0.5px;
+        }
+
+        input[type="text"]:focus {
+            border-color: #38bdf8;
+            box-shadow: 0 0 8px rgba(56, 189, 248, 0.2);
+        }
+
+        /* 2. Target exclusivo para inputs NUMÉRICOS */
+        input[type="number"] {
+            border-left: 4px solid #10b981; /* Detalle verde en el lateral */
+            font-family: monospace;         /* Tipografía mono para leer mejor los números */
+            font-weight: bold;
+            color: #10b981;
+            text-align: right;              /* Alineación clásica de contabilidad */
+        }
+
+        input[type="number"]:focus {
+            border-color: #10b981;
+            box-shadow: 0 0 8px rgba(16, 185, 129, 0.2);
+        }
+
+
+        /* Botón de envío */
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #38bdf8;
+            color: #0f172a;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0ea5e9;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-card">
+        <h2>Nuevo Producto</h2>
+        
+        <form>
+            <div class="form-group">
+                <label for="prod-name">Nombre del Producto</label>
+                <input type="text" id="prod-name" placeholder="Ej. Teclado Mecánico">
+            </div>
+
+            <div class="form-group">
+                <label for="prod-brand">Marca</label>
+                <input type="text" id="prod-brand" placeholder="Ej. Keychron">
+            </div>
+
+            <div class="form-group">
+                <label for="prod-price">Precio (€)</label>
+                <input type="number" id="prod-price" placeholder="0.00" step="0.01">
+            </div>
+
+            <div class="form-group">
+                <label for="prod-stock">Unidades en Stock</label>
+                <input type="number" id="prod-stock" placeholder="0">
+            </div>
+
+            <button type="submit">Guardar Producto</button>
+        </form>
+    </div>
+
+</body>
+</html>
