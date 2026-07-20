@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html {
+            font-size: 16px;
+        }
+
+        .container {
+            background-color: khaki;
+            border: 2px solid black;
+
+            /* Al contenedor padre es al que tenemos que aplicar la propiedad display: flex */
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 16px;
+
+
+            height: 400px;
+
+
+        }
+
+        .box {
+            border: 2px solid blue;
+            background-color: aquamarine;
+            padding: 20px;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+      
+    </style>
+</head>
+
+<body>
+    <h1>Ejemplos Flex</h1>
+    <div class="container">
+        <div class="box">Caja 1</div>
+        <div class="box">Caja 2</div>
+        <div class="box">Caja 3</div>
+        <div class="box">Caja 4</div>
+        <div class="box">Caja 5</div>
+        <div class="box">Caja 6</div>
+        <div class="box">Caja 7</div>
+
+    </div>
+</body>
+
+</html>

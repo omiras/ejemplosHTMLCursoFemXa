@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laboratorio de CSS Position</title>
+  <style>
+    /* --- Estilos Generales de Base --- */
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      margin: 0;
+      padding-top: 60px; /* Preparado para cuando actives el menú FIXED */
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    .seccion {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    /* --- 1. FIXED: Menú de navegación superior --- */
+    .menu-fijo {
+      /* DESCOMENTA ESTO PARA CLAVAR EL MENÚ ARRIBA: */
+      /* position: fixed; */
+      /* top: 0; */
+      /* left: 0; */
+      width: 100%;
+      height: 60px;
+      background-color: #1e293b;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      z-index: 1000;
+    }
+
+    .menu-fijo a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* --- 2. STATIC: Comportamiento por defecto --- */
+    .texto-estatico {
+      /* position: static; */ /* Ya viene por defecto, top/left no le hacen nada */
+      /* top: 20px; */ 
+      line-height: 1.6;
+      color: #475569;
+    }
+
+    /* --- 3. RELATIVE: Movimiento respecto a sí mismo --- */
+    .caja-relativa {
+      /* DESCOMENTA ESTO PARA MOVERLA SIN ROMPER EL FLUJO: */
+      /* position: relative; */
+      /* top: 20px; */
+      /* left: 30px; */
+      background-color: #fef08a; /* Amarillo claro */
+      padding: 15px;
+      border: 2px dashed #ca8a04;
+      border-radius: 6px;
+    }
+
+    /* --- 4. RELATIVE + ABSOLUTE: El caso del Badge --- */
+    .contenedor-avatar {
+      /* DESCOMENTA ESTO PRIMERO (El Ancla): */
+      /* position: relative; */ 
+      width: 80px;
+      height: 80px;
+      margin-top: 15px;
+    }
+
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background-color: #cbd5e1;
+    }
+
+    .badge-notificacion {
+      /* DESCOMENTA ESTO SEGUNDO (El Proyectil): */
+      /* position: absolute; */
+      /* top: 0; */
+      /* left: 0; */
+      background-color: #ef4444;
+      color: white;
+      font-size: 12px;
+      font-weight: bold;
+      border-radius: 50%;
+      padding: 4px 8px;
+      transform: translate(-25%, -25%); 
+    }
+
+    /* --- 5. STICKY: Cabeceras de la agenda --- */
+    .contenedor-agenda {
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      overflow: hidden;
+      max-height: 250px; /* Forzamos scroll interno para el experimento */
+      overflow-y: auto;
+    }
+
+    .cabecera-mes {
+      /* DESCOMENTA ESTO PARA CONGELAR EL MES AL HACER SCROLL: */
+      /* position: sticky; */
+      /* top: 0; */
+      background-color: #3b82f6;
+      color: white;
+      margin: 0;
+      padding: 10px 15px;
+      font-size: 16px;
+    }
+
+    .elemento-lista {
+      padding: 12px 15px;
+      border-bottom: 1px solid #e2e8f0;
+      background: white;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. MENÚ FIXED -->
+  <nav class="menu-fijo">
+    <a href="#static">1. Static</a>
+    <a href="#relative">2. Relative</a>
+    <a href="#badge">3. Relative + Absolute</a>
+    <a href="#sticky">4. Sticky</a>
+  </nav>
+
+  <!-- 2. EJEMPLO STATIC -->
+  <section id="static" class="seccion">
+    <h2>1. Position Static (El estado natural)</h2>
+    <p class="texto-estatico">
+      Este texto es <code>static</code>. Intenta descomentar sus propiedades en el CSS y verás que aunque le pongas un <code>top: 20px</code>, el navegador lo ignora por completo. Sigue el flujo normal de la página.
+    </p>
+  </section>
+
+  <!-- 3. EJEMPLO RELATIVE -->
+  <section id="relative" class="seccion">
+    <h2>2. Position Relative (El clon fantasma)</h2>
+    <p>Cuando activas <code>relative</code> en esta caja amarilla y le aplicas <code>top</code> y <code>left</code>, la caja se mueve de forma real, pero **deja su hueco original intacto** como si fuera un fantasma. No empuja a los elementos de abajo.</p>
+    <div class="caja-relativa">
+      ¡Soy una caja relativa! Descoméntame para moverme respecto a mi posición original.
+    </div>
+    <p style="margin-top: 20px; color: #94a3b8;">Este texto de abajo no se moverá aunque la caja de arriba se desplace.</p>
+  </section>
+
+  <!-- 4. EJEMPLO RELATIVE + ABSOLUTE -->
+  <section id="badge" class="seccion">
+    <h2>3. Combo: Relative + Absolute (El Badge)</h2>
+    <p><strong>Experimento paso a paso:</strong></p>
+    <ol>
+      <li>Descomenta solo el <code>absolute</code> del badge. Verás que se escapa a la esquina superior izquierda de toda la pantalla (porque no encuentra ningún padre jefe).</li>
+      <li>Ahora, descomenta el <code>relative</code> del contenedor. El badge volverá instantáneamente a su sitio, obedeciendo a su padre.</li>
+    </ol>
+    
+    <div class="contenedor-avatar">
+      <div class="avatar-img"></div> 
+      <span class="badge-notificacion">3</span>
+    </div>
+  </section>
+
+  <!-- 5. EJEMPLO STICKY -->
+  <section id="sticky" class="seccion">
+    <h2>4. Position Sticky (El encabezado inteligente)</h2>
+    <p>Haz scroll dentro del recuadro de la agenda. Al principio los meses se mueven normal, pero cuando descomentes su <code>sticky</code> y su <code>top: 0</code>, se quedarán clavados arriba al deslizarse.</p>
+    
+    <div class="contenedor-agenda">
+      <h3 class="cabecera-mes">Enero</h3>
+      <div class="elemento-lista">Alejandro Sanz</div>
+      <div class="elemento-lista">Amaral</div>
+      <div class="elemento-lista">Ana Belén</div>
+      
+      <h3 class="cabecera-mes">Febrero</h3>
+      <div class="elemento-lista">Babasónicos</div>
+      <div class="elemento-lista">Barón Rojo</div>
+      <div class="elemento-lista">Bunbury</div>
+
+      <h3 class="cabecera-mes">Marzo</h3>
+      <div class="elemento-lista">Camilo Sesto</div>
+      <div class="elemento-lista">Carlos Tarque</div>
+      <div class="elemento-lista">Coti</div>
+    </div>
+  </section>
+
+  <!-- Relleno inferior para probar el menú FIXED general -->
+  <div style="height: 600px; text-align: center; padding-top: 100px; color: #94a3b8; border-top: 1px dashed #e2e8f0;">
+    Espacio de relleno para generar scroll general en la web.
+  </div>
+
+</body>
+</html>
