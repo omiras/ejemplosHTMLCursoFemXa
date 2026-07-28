@@ -1,0 +1,166 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Apuntes - Condicionales JavaScript</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+<style>
+body{padding-bottom:4rem}
+pre{padding:1rem;overflow:auto}
+.tip{border-left:4px solid #2a7;padding:1rem;background:#eefaf4}
+.warn{border-left:4px solid #d84;padding:1rem;background:#fff5ea}
+code{font-family:Consolas,monospace}
+</style>
+</head>
+<body>
+<main class="container">
+<h1>📖 Tomar decisiones en JavaScript</h1>
+<p>Estos apuntes sirven de ayuda para resolver los ejercicios de condicionales sin incluir sus soluciones.</p>
+
+<nav>
+<ul>
+<li><a href="#boolean">Boolean</a></li>
+<li><a href="#if">if</a></li>
+<li><a href="#else">if...else</a></li>
+<li><a href="#elseif">if...else if</a></li>
+<li><a href="#ops">Operadores</a></li>
+<li><a href="#logic">Operadores lógicos</a></li>
+<li><a href="#switch">switch</a></li>
+</ul>
+</nav>
+
+<article id="boolean">
+<h2>Valores booleanos</h2>
+<p>Una condición siempre responde <strong>true</strong> o <strong>false</strong>.</p>
+<pre><code>let mayorEdad = true;
+let aprobado = false;
+
+console.log(18 >= 18); // true
+console.log(5 > 10);   // false</code></pre>
+</article>
+
+<article id="if">
+<h2>La estructura if</h2>
+<pre><code>let edad = 20;
+
+if (edad >= 18) {
+    console.log("Puedes entrar");
+}</code></pre>
+<div class="tip"><strong>Idea:</strong> el código solo se ejecuta cuando la condición vale <code>true</code>.</div>
+</article>
+
+<article id="else">
+<h2>if...else</h2>
+<pre><code>let edad = 15;
+
+if (edad >= 18) {
+    console.log("Mayor de edad");
+} else {
+    console.log("Menor de edad");
+}</code></pre>
+</article>
+
+<article id="elseif">
+<h2>if...else if</h2>
+<pre><code>let nota = 8;
+
+if (nota >= 9) {
+    console.log("Sobresaliente");
+} else if (nota >= 7) {
+    console.log("Notable");
+} else if (nota >= 5) {
+    console.log("Aprobado");
+} else {
+    console.log("Suspenso");
+}</code></pre>
+</article>
+
+<article id="ops">
+<h2>Operadores de comparación</h2>
+<table>
+<thead><tr><th>Operador</th><th>Significado</th></tr></thead>
+<tbody>
+<tr><td>&gt;</td><td>Mayor que</td></tr>
+<tr><td>&gt;=</td><td>Mayor o igual</td></tr>
+<tr><td>&lt;</td><td>Menor que</td></tr>
+<tr><td>&lt;=</td><td>Menor o igual</td></tr>
+<tr><td>==</td><td>Igual</td></tr>
+<tr><td>===</td><td>Igual estricto</td></tr>
+<tr><td>!=</td><td>Distinto</td></tr>
+<tr><td>!==</td><td>Distinto estricto</td></tr>
+</tbody>
+</table>
+</article>
+
+<article id="logic">
+<h2>Operadores lógicos</h2>
+<h3>AND (&&)</h3>
+<pre><code>let ingresos = 1800;
+let contratoIndefinido = true;
+
+if (ingresos >= 1500 && contratoIndefinido) {
+    console.log("Hipoteca concedida");
+}</code></pre>
+
+<h3>OR (||)</h3>
+<pre><code>let vip = false;
+let invitado = true;
+
+if (vip || invitado) {
+    console.log("Puede entrar");
+}</code></pre>
+
+<h3>NOT (!)</h3>
+<pre><code>let matriculado = false;
+
+if (!matriculado) {
+    console.log("Todavía puedes inscribirte");
+}</code></pre>
+</article>
+
+<article id="switch">
+<h2>switch</h2>
+<pre><code>let idioma = "medio";
+
+switch (idioma) {
+    case "bajo":
+        console.log("Necesitas mejorar");
+        break;
+    case "medio":
+        console.log("Puedes seguir el curso");
+        break;
+    case "alto":
+        console.log("Perfecto");
+        break;
+    default:
+        console.log("Valor desconocido");
+}</code></pre>
+</article>
+
+<article>
+<h2>Casos de uso</h2>
+<ul>
+<li>¿Me concederán la hipoteca?</li>
+<li>¿Puede inscribirse al curso?</li>
+<li>¿Es mayor de edad?</li>
+<li>¿Trabaja al menos 3 días?</li>
+<li>¿Tiene un nivel suficiente de español?</li>
+</ul>
+</article>
+
+<article>
+<h2>Errores habituales</h2>
+<div class="warn">
+<ul>
+<li>No pongas <code>;</code> justo después del <code>if (...)</code>.</li>
+<li>No olvides los paréntesis.</li>
+<li>Distingue <code>=</code> (asignación) de <code>==</code> y <code>===</code> (comparación).</li>
+</ul>
+</div>
+</article>
+
+</main>
+</body>
+</html>
