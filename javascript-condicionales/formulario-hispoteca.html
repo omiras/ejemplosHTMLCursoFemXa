@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+</head>
+
+<body>
+    <main class="container">
+        <h1>🏦 Solicitud de hipoteca</h1>
+        <label>Edad<input id="edad" type="number"></label>
+        <label>Ingresos (€)<input id="ingresos" type="number"></label>
+        <label>¿Contrato indefinido?
+            <select id="contrato">
+                <option value="si">Sí</option>
+                <option value="no">No</option>
+            </select>
+        </label>
+        <button onclick="evaluar()">Evaluar</button>
+        <article id="resultado" style="display:none;margin-top:1rem;border-left:6px solid;padding:1rem"></article>
+    </main>
+    <script>
+        function evaluar() {
+            const edadValor = Number(edad.value), ingresosValor = Number(ingresos.value), contratoValor = document.getElementById("contrato").value;
+            resultado.style.display = "block";
+            if (edadValor >= 18 && ingresosValor >= 2000 && contratoValor === "si") {
+                resultado.style.borderColor = "green";
+                resultado.innerHTML = "<strong style='color:green;font-size:1.3rem'>✔ HIPOTECA CONCEDIDA</strong><p>El solicitante cumple todos los requisitos.</p>";
+            } else {
+                resultado.style.borderColor = "red";
+                resultado.innerHTML = "<strong style='color:red;font-size:1.3rem'>✖ HIPOTECA DENEGADA</strong><p>No cumple todos los requisitos.</p>";
+            }
+        }
+    </script>
+</body>
+
+</html>
