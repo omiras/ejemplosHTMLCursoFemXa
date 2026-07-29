@@ -35,3 +35,18 @@ console.log("Tamaño del string nombre (valor Maria): ", nombre.length);
 if (nombre.length > 30) {
     console.log("El nombre es demasiado largo");
 }
+
+let lenguaje = "JavaScript";
+
+// Acceder a la última posición del string
+console.log("Última posición: ", lenguaje[9]); // índice manual
+console.log("Última posición: ", lenguaje[lenguaje.length - 1]); // índice usando el tamaño del string
+console.log("Última posición: ", lenguaje.slice(-1)); // usando slice y un índice negativo
+
+// Quedarme con un trocito del string
+let message = "Don't be sad, be happy!";
+let withSubstring = message.substring(0, 3);
+console.log(withSubstring); // <== Don
+ 
+let withSlice = message.slice(14);
+console.log(withSlice); // <==  be happy!
