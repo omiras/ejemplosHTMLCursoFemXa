@@ -51,3 +51,4 @@ console.log("El valor del precio final del billete es: ", precioFinal);
 /* Usamos la palabra reservada typeof nombreVariable */
 console.log(typeof origen); // es una variable de tipo cadena de texto (string)
 console.log(typeof precioFinal); // es una variable de tipo numérico (number)
+
