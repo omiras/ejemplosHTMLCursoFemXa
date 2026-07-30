@@ -6,6 +6,7 @@
 
 for (let i = 0; i < 5; i = i + 1) {
     console.log("Hola!");
+    console.log("Estoy en la iteración número: " + i);
 }
 
 console.log("He terminado");
