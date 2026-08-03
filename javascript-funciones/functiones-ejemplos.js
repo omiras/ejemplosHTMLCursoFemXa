@@ -5,12 +5,13 @@
  */
 
 function calcularAreaRectangulo(base, altura) {
-    return base * altura;
+    const area = base * altura;
+    return area;
 }
 
 console.log("El area de un rectangulo de anchura 10 y altura 20 es: ", calcularAreaRectangulo(10, 20));
 console.log("El area de un rectangulo de anchura 1 y altura 2 es: ", calcularAreaRectangulo(1, 2));
-
+// console.log(area); NO SE PUEDE ACCEDER A LA VARIABLE area , porque está dentro de la función
 
 /**
  * Función para calcular el mínimo entre dos números
