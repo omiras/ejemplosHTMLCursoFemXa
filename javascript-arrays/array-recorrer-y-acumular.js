@@ -15,7 +15,6 @@ console.log("Saldo final del bucle: ", saldoFinalBucle);
 /** Contar ovejas */
 
 const animales = ["🐶", "🐑", "🐱"];
-
 let contadorOvejas = 0; 
 
 for (let i = 0; i < animales.length; i++) {
