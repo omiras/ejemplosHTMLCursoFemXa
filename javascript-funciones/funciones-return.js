@@ -12,7 +12,7 @@ console.log(sumar(5, 5)); // 10
 
 // Crera una función que me calcula el IVA máximo acutal en ESPAÑA
 function calcularIVA(precio) {
-    return precio * 1.21;
+    return precio * 1.21; // 21%
 }
 
 console.log("Iva de un producto de 10 euros: ", calcularIVA(10));
