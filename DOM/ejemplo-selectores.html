@@ -74,6 +74,7 @@
         .cheap {
             color: green;
         }
+
     </style>
 </head>
 
@@ -120,6 +121,8 @@
         // Prueba aquí tus instrucciones JavaScript
 
 
+
+
         const productOferta = {
             name: "Auriculares inalámbricos",
             price: 129,
@@ -128,6 +131,22 @@
             category: "Audio"
         };
 
+    const productName = document.querySelector("#product-name");
+    console.log(productName.textContent);
+
+    const productPrice = document.querySelector("#product-price");
+    console.log(productPrice.textContent);
+
+    // método getElementById
+    const productCategory = document.getElementById("product-category"); // sin el # !!!
+    console.log(productCategory.textContent);
+
+    // Modificar el precio del producto 
+    document.querySelector("#product-price").textContent = "650 €";
+
+    // Modificar los colores del nodo precio
+    document.querySelector('#product-price').style.color = "#AABB23"
+    document.querySelector('#product-price').style.backgroundColor = "blue" 
 
     </script>
 
