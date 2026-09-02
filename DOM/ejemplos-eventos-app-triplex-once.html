@@ -82,6 +82,33 @@
         </button>
 
     </main>
+    <script>
+        const button = document.querySelector("#generar");
+        button.addEventListener("click", generarCombinacion);
+
+        function generarCombinacion() {
+            console.log("Combinación generada.");
+
+            // 2. Generar 1 número aleatorio y meter ese valor en la bola 1
+            let numeroAleatorio = Math.floor(Math.random() * 10);
+
+            const bola1 = document.querySelector("#bola1");
+            bola1.textContent = numeroAleatorio;
+
+            // bola 2
+            numeroAleatorio = Math.floor(Math.random() * 10);
+
+            const bola2 = document.querySelector("#bola2");
+            bola2.textContent = numeroAleatorio;
+            
+            // bola 3
+            numeroAleatorio = Math.floor(Math.random() * 10);
+
+            const bola3 = document.querySelector("#bola3");
+            bola3.textContent = numeroAleatorio;
+            
+        }
+    </script>
 
 </body>
 
