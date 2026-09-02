@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Oferta especial</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+            padding: 50px;
+        }
+
+        #producto {
+            width: 400px;
+            margin: auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+        }
+
+        #producto-imagen {
+            font-size: 100px;
+        }
+
+        #precio {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        #comprar {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #222;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #modal {
+            display: none;
+
+            position: fixed;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background-color: rgba(0, 0, 0, 0.6);
+
+            justify-content: center;
+            align-items: center;
+        }
+
+        #modal-contenido {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 350px;
+        }
+
+        #cerrar {
+            margin-top: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main id="producto">
+
+        <div id="producto-imagen">
+            🎧
+        </div>
+
+        <h1 id="nombre">
+            Auriculares inalámbricos
+        </h1>
+
+        <p id="descripcion">
+            Auriculares Bluetooth con cancelación de ruido.
+        </p>
+
+        <p id="precio">
+            49,99 €
+        </p>
+
+        <button id="comprar">
+            Comprar
+        </button>
+
+    </main>
+
+
+    <div id="modal">
+
+        <div id="modal-contenido">
+
+            <h2 id="modal-titulo">
+                ¿No estás convencido? 🤔
+            </h2>
+
+            <p id="modal-mensaje">
+                ¡Espera! Aprovecha ahora un
+                <strong>10% de descuento</strong>
+                antes de irte.
+            </p>
+
+            <button id="cerrar">
+                Seguir comprando
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        const comprar = document.querySelector("#comprar");
+        const modal = document.querySelector("#modal");
+        const cerrar = document.querySelector("#cerrar");
+
+
+        function mostrarOferta() {
+            modal.style.display = "flex";
+        }
+
+
+        function cerrarModal() {
+            modal.style.display = "none";
+        }
+
+
+        comprar.addEventListener("mouseleave", mostrarOferta);
+
+        cerrar.addEventListener("click", cerrarModal);
+
+    </script>
+
+</body>
+
+</html>

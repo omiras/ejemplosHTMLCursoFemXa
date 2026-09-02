@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triplex - ONCE</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+            padding: 40px;
+        }
+
+        #app {
+            width: 400px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        #titulo {
+            margin-bottom: 30px;
+        }
+
+        #bolas {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .bola {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #ddd;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        #generar {
+            padding: 12px 25px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main id="app">
+
+        <h1 id="titulo">🎱 Triplex</h1>
+
+        <div id="bolas">
+
+            <div id="bola1" class="bola">
+                
+            </div>
+
+            <div id="bola2" class="bola">
+                
+            </div>
+
+            <div id="bola3" class="bola">
+                
+            </div>
+
+        </div>
+
+        <button id="generar">
+            Generar combinación
+        </button>
+
+    </main>
+
+</body>
+
+</html>

@@ -69,10 +69,12 @@
 
         .expensive {
             color: red;
+            border: 2px solid black;
         }
 
         .cheap {
             color: green;
+            border: 5px solid blue;
         }
 
     </style>
@@ -144,9 +146,8 @@
     // Modificar el precio del producto 
     document.querySelector("#product-price").textContent = "650 €";
 
-    // Modificar los colores del nodo precio
-    document.querySelector('#product-price').style.color = "#AABB23"
-    document.querySelector('#product-price').style.backgroundColor = "blue" 
+    // Aplicar la clase .expansive al nodo donde está el precio
+    document.querySelector("#product-price").classList.add("cheap");
 
     </script>
 
