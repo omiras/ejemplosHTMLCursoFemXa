@@ -44,13 +44,23 @@
         </div>
 
         <p id="mensaje">
-            Haz doble clic sobre el cofre
+            Haz clic sobre el cofre
         </p>
 
     </main>
 
     <script>
 
+    const nodoCofre = document.querySelector("#cofre");
+
+    function abrir() {
+        console.log("¡Quieres abrir el cofre!");
+        nodoCofre.textContent = "💰";
+    }
+
+    // Asignar evento en una propiedad del nodo
+    // nodoCofre.onclick = abrir; // "Cuando me hagas clic en el cofre, ejecútame la función que se llama 'abrir'"
+    nodoCofre.addEventListener("click", abrir);
      
 
     </script>
