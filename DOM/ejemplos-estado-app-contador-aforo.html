@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Control de Aforo</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        main {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .aforo {
+            font-size: 70px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        #mensaje {
+            height: 30px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .botones {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 14px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #entrar {
+            background: #4caf50;
+            color: white;
+        }
+
+        #salir {
+            background: #607d8b;
+            color: white;
+        }
+
+        button:disabled {
+            background: #ccc !important;
+            color: #888;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Control de Aforo</h1>
+    </header>
+
+
+    <main>
+
+        <div class="card">
+
+            <p>PERSONAS EN EL RECINTO</p>
+
+            <div class="aforo">
+                <span id="personas">0</span> / 5
+            </div>
+
+            <p id="mensaje"></p>
+
+
+            <div class="botones">
+
+                <button id="entrar">
+                    + Entra persona
+                </button>
+
+                <button id="salir">
+                    − Sale persona
+                </button>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script>
+
+        // ESTADO
+        let personas = 0;
+
+        const AFORO_MAXIMO = 5;
+
+
+        // ELEMENTOS DEL DOM
+        const personasHTML = document.querySelector("#personas");
+        const mensaje = document.querySelector("#mensaje");
+
+        const entrar = document.querySelector("#entrar");
+        const salir = document.querySelector("#salir");
+
+
+        // ENTRA UNA PERSONA
+        entrar.addEventListener("click", function () {
+
+            if (personas < AFORO_MAXIMO) {
+                personas++;
+            }
+
+            actualizarInterfaz();
+
+        });
+
+
+        // SALE UNA PERSONA
+        salir.addEventListener("click", function () {
+
+            if (personas > 0) {
+                personas--;
+            }
+
+            actualizarInterfaz();
+
+        });
+
+
+        // ACTUALIZAMOS LA INTERFAZ
+        function actualizarInterfaz() {
+
+            personasHTML.textContent = personas;
+
+
+            if (personas === AFORO_MAXIMO) {
+
+                mensaje.textContent = "⚠️ AFORO COMPLETO";
+
+                entrar.disabled = true;
+
+            } else {
+
+                mensaje.textContent = "";
+
+                entrar.disabled = false;
+
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>

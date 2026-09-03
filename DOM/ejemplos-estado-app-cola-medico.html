@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Hospital Salud</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f2f6f8;
+            color: #263238;
+        }
+
+        header {
+            background: #1976a3;
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            background: white;
+            color: #1976a3;
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        header p {
+            margin: 4px 0 0;
+            opacity: 0.8;
+        }
+
+        main {
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .turno-card {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .turno-card p {
+            margin: 0;
+            color: #607d8b;
+            font-size: 18px;
+        }
+
+        #turno {
+            font-size: 100px;
+            color: #1976a3;
+            margin: 20px 0;
+        }
+
+        button {
+            background: #1976a3;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 17px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #145d7e;
+        }
+
+        button:disabled {
+            background: #b0bec5;
+            cursor: not-allowed;
+        }
+
+        #espera {
+            margin-top: 25px;
+            color: #607d8b;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">✚</div>
+
+        <div>
+            <h1>Hospital Salud</h1>
+            <p>Servicio de atención al paciente</p>
+        </div>
+    </header>
+
+
+    <main>
+
+        <div class="turno-card">
+
+            <p>AHORA ATENDIENDO</p>
+
+            <div id="turno">--</div>
+
+            <button id="siguiente">
+                Llamar siguiente paciente
+            </button>
+
+            <p id="espera">
+                Pacientes en espera: 5
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <script>
+
+        // ESTADO DE LA APLICACIÓN
+        let pacientes = ['LPG-23', 'MTR-24', 'ACV-25', 'JDL-26', 'RSN-27'];
+
+
+        // ELEMENTOS DEL DOM
+        const turno = document.querySelector("#turno");
+        const boton = document.querySelector("#siguiente");
+        const espera = document.querySelector("#espera");
+
+
+        // ACCIÓN DEL USUARIO
+        boton.addEventListener("click", function () {
+
+            // Cambiamos el estado
+            let paciente = pacientes.shift();
+
+            // Actualizamos la interfaz
+            turno.textContent = paciente;
+
+            espera.textContent =
+                "Pacientes en espera: " + pacientes.length;
+
+
+            // Si no quedan pacientes...
+            if (pacientes.length === 0) {
+                boton.disabled = true;
+                espera.textContent = "No quedan pacientes en espera";
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>
