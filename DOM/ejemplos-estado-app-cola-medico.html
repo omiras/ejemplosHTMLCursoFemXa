@@ -97,6 +97,11 @@
             margin-top: 25px;
             color: #607d8b;
         }
+
+        #turno {
+            color: red;
+        }
+
     </style>
 </head>
 
@@ -124,8 +129,8 @@
                 Llamar siguiente paciente
             </button>
 
-            <p id="espera">
-                Pacientes en espera: 5
+            <p>
+                Pacientes en espera: <span id="espera">5</span>
             </p>
 
         </div>
@@ -137,8 +142,21 @@
 
         // ESTADO DE LA APLICACIÓN
         let pacientes = ['LPG-23', 'MTR-24', 'ACV-25', 'JDL-26', 'RSN-27'];
+        
+        const boton = document.querySelector("#siguiente");
+        boton.addEventListener("click", siguientePaciente);
 
+        const turno = document.querySelector("#turno"); // 'turno' ya es un nodo
+        const pacientesRestantes = document.querySelector("#espera");
 
+        function siguientePaciente() {
+            // 1. Actualizar el estado. Obtnemos el primer paciente del array y lo guardamos en una variable
+            const paciente = pacientes.shift();
+
+            // 2. Ponemos el identificador del paciente en la "pantalla"
+            turno.textContent = paciente;
+            pacientesRestantes.textContent = pacientes.length;
+        }
        
 
     </script>

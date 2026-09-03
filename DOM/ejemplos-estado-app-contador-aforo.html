@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Control de Aforo</title>
@@ -100,7 +101,7 @@
             <p>PERSONAS EN EL RECINTO</p>
 
             <div class="aforo">
-                <span id="personas">0</span> / 5
+                <span id="aforo-actual">0</span> / 5
             </div>
 
             <p id="mensaje"></p>
@@ -112,7 +113,7 @@
                     + Entra persona
                 </button>
 
-                <button id="salir">
+                <button disabled id="salir">
                     − Sale persona
                 </button>
 
@@ -130,65 +131,61 @@
 
         const AFORO_MAXIMO = 5;
 
+        const entraPersona = document.querySelector("#entrar");
+        entraPersona.addEventListener("click", añadirPersona);
+
+        const salePersona = document.querySelector('#salir');
+        salePersona.addEventListener("click", salirPersona);
+
+        const aforoActual = document.querySelector("#aforo-actual");
+
+        function salirPersona() {
+            personas = personas - 1;
+            aforoActual.textContent = personas;
+
+            actualizarEstadoBotones();
+
+        }
+
+        function añadirPersona() {
+            // 1. Incrementar la variable 'personas'
+            personas = personas + 1;
+
+            // 2. Actualizar el nodo del DOM donde se ven las personas actuales en el recinto
+            aforoActual.textContent = personas;
+
+            actualizarEstadoBotones();
+
+        }
+
+        function actualizarEstadoBotones() {
+            // Si el aforo esta a 0, debe deshabilitar el botón de "- sale persona"
+            // Si el aforo está complete, debe deshabilitar el botón de "+ entra persona"
+            // en cualquier otro caso, debe habilitar los botones
+
+            if (personas == 0) {
+                salePersona.disabled = true;
+            } else {
+                salePersona.disabled = false;
+            }
+            // ¿Como comprueba que he llegado a 5? Con el AFORO_MAXIMO
+            // si el personas <= AFORO_MAXIMO , boton habilitado
+            // en caso contrario, deshabilitar 
+            if (personas < AFORO_MAXIMO) {
+                entraPersona.disabled = false
+            } else {
+                entraPersona.disabled = true;
+            }
+        }
+
 
 
     </script>
 
 </body>
+
 </html>
 <!--
 
-        // ELEMENTOS DEL DOM
-        const personasHTML = document.querySelector("#personas");
-        const mensaje = document.querySelector("#mensaje");
 
-        const entrar = document.querySelector("#entrar");
-        const salir = document.querySelector("#salir");
-
-
-        // ENTRA UNA PERSONA
-        entrar.addEventListener("click", function () {
-
-            if (personas < AFORO_MAXIMO) {
-                personas++;
-            }
-
-            actualizarInterfaz();
-
-        });
-
-
-        // SALE UNA PERSONA
-        salir.addEventListener("click", function () {
-
-            if (personas > 0) {
-                personas--;
-            }
-
-            actualizarInterfaz();
-
-        });
-
-
-        // ACTUALIZAMOS LA INTERFAZ
-        function actualizarInterfaz() {
-
-            personasHTML.textContent = personas;
-
-
-            if (personas === AFORO_MAXIMO) {
-
-                mensaje.textContent = "⚠️ AFORO COMPLETO";
-
-                entrar.disabled = true;
-
-            } else {
-
-                mensaje.textContent = "";
-
-                entrar.disabled = false;
-
-            }
-
-        }
 -->
