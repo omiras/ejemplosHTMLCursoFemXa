@@ -7,8 +7,12 @@
 
     <style>
         body {
-            height: 100vh;
             margin: 0;
+        }
+
+        #caja {
+            width: 100vw;
+            height: 100vh;
             cursor: crosshair;
         }
     </style>
@@ -16,9 +20,12 @@
 
 <body>
 
+    <main id="caja"></main>
+
     <script>
 
-        document.addEventListener("click", mostrarClic);
+        const caja = document.querySelector("#caja");
+        caja.addEventListener("click", mostrarClic);
          
         function mostrarClic(event) {
             console.log("X:", event.clientX);
