@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Coordenadas</title>
+
+    <style>
+        body {
+            height: 100vh;
+            margin: 0;
+            cursor: crosshair;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script>
+
+        document.addEventListener("click", mostrarClic);
+         
+        function mostrarClic(event) {
+            console.log("X:", event.clientX);
+            console.log("Y:", event.clientY);
+        }
+
+    </script>
+
+</body>
+
+</html>
