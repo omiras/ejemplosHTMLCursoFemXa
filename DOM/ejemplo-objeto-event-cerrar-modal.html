@@ -76,16 +76,17 @@
 
         const modal = document.querySelector("#modal");
 
+        // Añadimos a TODO un listener para que detecte cuando el usuario pulsa una tecla
         document.addEventListener("keydown", function(event) {
 
-            console.log("El usuairo ha pulsado la tecla: ", event.key);
+            console.log(event.key);
 
-            // if (event.key === "Escape") {
+            // Si el usuario ha pulsado la tecla "Escape", entoces, asociamos la clase .oculto al modal
 
-            //     modal.classList.add("oculto");
-
-            // }
-
+            if (event.key === "Escape") {
+                // Añade la clase oculto al modal
+                modal.classList.add("oculto");
+            }
         });
 
     </script>

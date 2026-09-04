@@ -14,6 +14,7 @@
             width: 100vw;
             height: 100vh;
             cursor: crosshair;
+            border: 5px solid red;
         }
     </style>
 </head>
@@ -25,12 +26,12 @@
     <script>
 
         const caja = document.querySelector("#caja");
-        caja.addEventListener("click", mostrarClic);
+        caja.addEventListener("click", function(event) {
+           console.log("Coordenada X del click: ", event.clientX);
+           console.log("Coordenada Y del click: ", event.clientY);
+        });
          
-        function mostrarClic(event) {
-            console.log("X:", event.clientX);
-            console.log("Y:", event.clientY);
-        }
+    
 
     </script>
 
