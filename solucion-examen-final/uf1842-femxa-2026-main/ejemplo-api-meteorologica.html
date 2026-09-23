@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El tiempo</title>
+</head>
+<body>
+
+  <h1>El tiempo en tu ciudad</h1>
+
+  <label for="ciudad">Selecciona una ciudad:</label>
+
+  <select id="ciudad">
+    <option value="barcelona">Barcelona</option>
+    <option value="madrid">Madrid</option>
+    <option value="valencia">Valencia</option>
+    <option value="aielo">Aielo de Malferit</option>
+  </select>
+
+  <h2 id="titulo"></h2>
+
+  <div id="tiempo"></div>
+
+  <script>
+    const ciudades = {
+      barcelona: {
+        nombre: "Barcelona",
+        latitud: 41.3874,
+        longitud: 2.1686
+      },
+      madrid: {
+        nombre: "Madrid",
+        latitud: 40.4168,
+        longitud: -3.7038
+      },
+      valencia: {
+        nombre: "Valencia",
+        latitud: 39.4699,
+        longitud: -0.3763
+      },
+      aielo: {
+        nombre: "Aielo de Malferit",
+        latitud: 38.8833,
+        longitud: -0.5833
+      }
+    };
+
+    async function obtenerTiempo() {
+
+      const ciudadSeleccionada =
+        document.getElementById("ciudad").value;
+
+      const ciudad = ciudades[ciudadSeleccionada];
+
+      const url = `https://api.open-meteo.com/v1/forecast?latitude=${ciudad.latitud}&longitude=${ciudad.longitud}&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,wind_speed_10m&timezone=Europe%2FMadrid`;
+
+      document.getElementById("titulo").textContent =
+        `El tiempo en ${ciudad.nombre}`;
+
+      document.getElementById("tiempo").textContent =
+        "Cargando el tiempo...";
+
+      try {
+        const response = await fetch(url);
+
+        if (!response.ok) {
+          throw new Error("Error al obtener el tiempo");
+        }
+
+        const data = await response.json();
+
+        console.log(data);
+
+        const tiempo = data.current;
+
+        document.getElementById("tiempo").innerHTML = `
+          <p>Temperatura: ${tiempo.temperature_2m} °C</p>
+          <p>Humedad: ${tiempo.relative_humidity_2m} %</p>
+          <p>Sensación térmica: ${tiempo.apparent_temperature} °C</p>
+          <p>Precipitación: ${tiempo.precipitation} mm</p>
+          <p>Viento: ${tiempo.wind_speed_10m} km/h</p>
+        `;
+
+      } catch (error) {
+        console.error(error.message);
+
+        document.getElementById("tiempo").textContent =
+          "No se ha podido obtener el tiempo.";
+      }
+    }
+
+    // Ejecutar al cambiar de ciudad
+    document.getElementById("ciudad")
+      .addEventListener("change", obtenerTiempo);
+
+    // Mostrar el tiempo al cargar la página
+    obtenerTiempo();
+
+  </script>
+
+</body>
+</html>

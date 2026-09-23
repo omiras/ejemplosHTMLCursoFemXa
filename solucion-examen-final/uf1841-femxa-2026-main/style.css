@@ -1,0 +1,51 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Verdana, sans-serif;
+}
+
+a {
+    text-decoration: none;
+    font-weight: 700;
+}
+
+div {
+    width: fit-content;
+    font-size: 1.2rem;
+    padding: 1rem;
+    margin-top: 16px;
+    /* Contenedor padre de referencia para posicionar a su hijo respecto a el*/
+    position: relative;
+}
+
+
+.icono-peligro {
+    position: absolute;
+    top: -12px;
+    right: -10px;
+}
+
+.danger {
+    background-color: #ffdddd;
+    border-left-color: #f44336;
+    border-left-style: solid;
+    border-left-width: 8px;
+}
+
+.success {
+    background-color: #ddffdd;
+    border-left: 8px solid #04AA6D;
+}
+
+.info {
+    background-color:  #e7f3fe;
+    border-left: 8px solid #2196F3;
+
+}
+
+.warning {
+    background-color:  #ffffcc;
+    border-left: 8px solid #ffeb3b;
+}
