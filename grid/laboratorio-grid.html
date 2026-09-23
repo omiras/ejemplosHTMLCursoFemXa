@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Laboratorio progresivo de CSS Grid</title>
+<style>
+/* Estilos de lectura: no forman parte de los ejercicios. */
+* { box-sizing: border-box; }
+body { margin: 0; padding: 24px; font-family: Arial, sans-serif; color: #172033; background: #f7f9fc; }
+main { max-width: 1100px; margin: auto; }
+h1 { margin-bottom: 8px; }
+.intro { max-width: 750px; line-height: 1.5; }
+.exercise { background: white; border: 1px solid #d6deea; border-radius: 10px; padding: 20px; margin: 24px 0; }
+.exercise h2 { margin-top: 0; }
+.exercise p { line-height: 1.45; }
+.stage { padding: 12px; border: 2px dashed #899bb8; border-radius: 8px; background: #edf2fa; min-height: 120px; }
+.stage > * { background: #d8e8ff; border: 2px solid #557ec3; border-radius: 6px; padding: 16px; min-width: 0; }
+.stage > :nth-child(2) { background: #def2e2; border-color: #589568; }
+.stage > :nth-child(3) { background: #fff0d8; border-color: #bb8438; }
+.stage > :nth-child(4) { background: #efdffa; border-color: #9363b6; }
+.stage > :nth-child(5) { background: #ffe2e3; border-color: #c76f74; }
+.stage > :nth-child(6) { background: #d8f2f3; border-color: #528f93; }
+.label { font-weight: bold; }
+footer { margin: 40px 0; color: #50617d; }
+
+/* =========================================================
+   ZONA DE TRABAJO: completa los ejercicios en orden.
+   Los selectores están preparados. Añade solo las
+   declaraciones que necesites dentro de cada regla.
+   ========================================================= */
+
+/* 1. Convierte el contenedor en Grid y crea tres columnas iguales. */
+.ex1 {
+      display: grid;
+      grid-template-columns: 200px 200px 200px;
+
+}
+
+/* 2. Crea dos columnas: la derecha, el doble de ancha que la izquierda.
+      Usa tamaños flexibles, no píxeles. */
+.ex2 {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+}
+
+/* 3. Crea tres columnas iguales y separa las cajas 20px
+      tanto horizontal como verticalmente. */
+.ex3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+}
+
+/* 4. Crea dos columnas y dos filas. Haz que la segunda fila
+      tenga más altura que la primera. */
+.ex4 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 80px 160px;
+}
+
+/* 5. Crea una cuadrícula de tres columnas iguales.
+      Después haz que la caja A ocupe las dos primeras columnas.
+      Sitúa la caja D en la última columna de la fila siguiente. */
+.ex5 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+}
+.ex5 .a {
+      grid-column: 1 / 3;
+}
+.ex5 .d {
+      grid-column: 3 / 4;
+}
+
+/* 6. Usa grid-column y grid-row para formar este dibujo:
+      CABECERA CABECERA
+      LATERAL  CONTENIDO
+      LATERAL  CONTENIDO
+      PIE      PIE
+      Define las columnas y coloca cada elemento entre líneas. */
+.ex6 {
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+      grid-template-rows: 60px 140px 60px
+}
+.ex6 .cabecera {
+      grid-column: 1 / 3;
+}
+.ex6 .lateral {
+      grid-column: 1/ 2;
+}
+.ex6 .contenido {
+}
+.ex6 .pie {
+      grid-column: 1/ 4;
+}
+
+/* 7. Empieza con una sola columna.
+      Desde 700px de ancho de ventana, muestra tres columnas. */
+.ex7 {
+}
+@media (min-width: 700px) {
+  .ex7 {
+  }
+}
+
+/* 8. Mini «Holy Grail»: dos columnas; la derecha tres veces
+      más ancha. La cabecera y el pie ocupan ambas columnas.
+      El lateral ocupa las dos filas centrales. Usa filas
+      flexibles para que el texto pueda crecer. */
+.ex8 {
+}
+.ex8 .cabecera {
+}
+.ex8 .lateral {
+}
+.ex8 .pie {
+}
+</style>
+</head>
+<body>
+<main>
+<header>
+<h1>Laboratorio progresivo de CSS Grid</h1>
+<p class="intro">Abre este archivo en el navegador y en tu editor. Modifica únicamente la <strong>zona de trabajo</strong> del bloque <code>&lt;style&gt;</code>. Guarda y recarga después de cada cambio. Si una disposición no funciona, identifica primero el contenedor y después sus hijos directos.</p>
+</header>
+
+<section class="exercise">
+<h2>1. Activar Grid y crear columnas</h2>
+<p>Consigue tres columnas iguales. La cuarta caja debe pasar automáticamente a otra fila.</p>
+<div class="stage ex1"><div>Uno</div><div>Dos</div><div>Tres</div><div>Cuatro</div><div>Cinco</div><div>Seis</div><div>Septimo</div></div>
+</section>
+
+<section class="exercise">
+<h2>2. Repartir el espacio con fr</h2>
+<p>Haz que la columna derecha sea el doble de ancha que la izquierda. Cambia el tamaño de la ventana: la proporción debe mantenerse.</p>
+<div class="stage ex2"><div>Izquierda</div><div>Derecha</div></div>
+</section>
+
+<section class="exercise">
+<h2>3. Separar filas y columnas</h2>
+<p>Forma tres columnas iguales y deja 20 px entre las cajas. Observa dónde aparece el espacio y dónde no.</p>
+<div class="stage ex3"><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div></div>
+</section>
+
+<section class="exercise">
+<h2>4. Dar tamaño a las filas</h2>
+<p>Forma dos columnas y dos filas. Da más altura a la segunda fila y observa cómo se estiran sus cajas.</p>
+<div class="stage ex4"><div>Primera fila</div><div>Primera fila</div><div>Segunda fila</div><div>Segunda fila</div></div>
+</section>
+
+<section class="exercise">
+<h2>5. Colocar elementos entre líneas</h2>
+<p>Crea tres columnas. La caja A debe abarcar las dos primeras; coloca D en la última columna de la fila siguiente. ¿Qué huecos deja esta decisión?</p>
+<div class="stage ex5"><div class="a">A</div><div>B</div><div>C</div><div class="d">D</div></div>
+</section>
+
+<section class="exercise">
+<h2>6. Colocar por líneas</h2>
+<p>Construye una página pequeña: cabecera arriba, lateral a la izquierda, contenido a la derecha y pie abajo. Usa las líneas de Grid para que lateral y contenido ocupen dos filas.</p>
+<div class="stage ex6"><div class="cabecera">Cabecera</div><div class="lateral">Lateral</div><div class="contenido">Contenido</div><div class="pie">Pie</div></div>
+</section>
+
+<section class="exercise">
+<h2>7. Cambiar el diseño con una media query</h2>
+<p>En una ventana estrecha, una columna. Desde 700 px, tres columnas. Prueba ambos tamaños con las herramientas del navegador.</p>
+<div class="stage ex7"><div>Tarjeta 1</div><div>Tarjeta 2</div><div>Tarjeta 3</div><div>Tarjeta 4</div><div>Tarjeta 5</div><div>Tarjeta 6</div></div>
+</section>
+
+<section class="exercise">
+<h2>8. Reto final: estructura «Holy Grail»</h2>
+<p>Combina columnas proporcionales, filas flexibles y elementos que abarcan varias celdas. Estrecha la ventana para comprobar que el texto crece sin salirse de su zona.</p>
+<div class="stage ex8"><div class="cabecera">Cabecera</div><div class="lateral">Barra lateral</div><div>Navegación</div><div>Artículo: el contenido puede ocupar más líneas al reducir el ancho de la ventana. La cuadrícula debe permitir que esta zona crezca para que el texto siga siendo visible.</div><div class="pie">Pie</div></div>
+</section>
+<footer>Al terminar cada apartado, explica qué regla has añadido, a qué elemento se aplica y qué cambió en el navegador.</footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSS Grid: presentación interactiva</title>
+<style>
+:root{font-family:system-ui,sans-serif;color:#172033;background:#f6f8fc}
+*{box-sizing:border-box}
+body{margin:0}
+header{background:#182b55;color:white;padding:1.5rem max(1rem,calc((100vw - 1100px)/2))}
+h1{margin:0 0 .35rem;font-size:clamp(1.6rem,3vw,2.5rem)}
+header p{margin:0;color:#dce7ff}
+main{max-width:1100px;margin:auto;padding:1.2rem}
+nav{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.2rem}
+button,select,input{font:inherit}
+button{border:1px solid #b8c8e6;background:white;border-radius:.55rem;padding:.6rem .85rem;cursor:pointer}
+button[aria-current="step"]{background:#2454ae;color:white;border-color:#2454ae}
+button:focus-visible,input:focus-visible{outline:3px solid #edb457;outline-offset:2px}
+.layout{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(250px,.8fr);gap:1rem}
+.panel{background:white;border:1px solid #d7deeb;border-radius:.8rem;padding:1.2rem;min-width:0}
+h2{margin-top:0}
+.explain{line-height:1.55}
+.demo-wrap{background:#eff3fb;border:1px dashed #90a3c5;border-radius:.6rem;padding:1rem;resize:horizontal;overflow:auto;min-width:260px;max-width:100%;width:100%}
+.demo{min-height:250px;display:grid;gap:10px}
+.tile{background:#dce9ff;border:2px solid #4779d3;border-radius:.5rem;padding:.65rem;font-weight:700;text-align:center;min-width:0}
+.tile:nth-child(2){background:#e4f4e9;border-color:#489966}
+.tile:nth-child(3){background:#ffeed6;border-color:#c5812d}
+.tile:nth-child(4){background:#f2e3fc;border-color:#9253bd}
+.controls{display:grid;gap:.7rem;margin-top:1rem}
+.controls label{display:grid;gap:.25rem}
+.controls output{font-weight:700}
+pre{background:#15213b;color:#f4f7ff;border-radius:.55rem;padding:1rem;overflow:auto;white-space:pre-wrap;line-height:1.5}
+.note{color:#46536e}
+footer{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:1rem}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.demo-wrap{resize:none}}
+</style>
+</head>
+<body>
+<header><h1>CSS Grid, paso a paso</h1><p>Una idea por pantalla. Cambia los controles y observa qué ocurre.</p></header>
+<main>
+<nav id="steps" aria-label="Conceptos de Grid"></nav>
+<div class="layout">
+<section class="panel" aria-live="polite">
+<p id="counter" class="note"></p>
+<h2 id="title"></h2>
+<p id="explain" class="explain"></p>
+<p id="question" class="note"></p>
+<div id="controls" class="controls"></div>
+<h3>CSS que produce el ejemplo</h3>
+<pre><code id="code"></code></pre>
+</section>
+<section class="panel">
+<h2>Resultado en directo</h2>
+<p class="note">En escritorio puedes arrastrar el borde derecho del área punteada para cambiar su anchura.</p>
+<div class="demo-wrap" id="demo-wrap"><div class="demo" id="demo">
+<div class="tile">1 · Supervisor</div><div class="tile">2 · Team Builder</div><div class="tile">3 · Karma</div><div class="tile">4 · Calculator</div>
+</div></div>
+<p id="observation" class="note"></p>
+</section>
+</div>
+<footer><button id="prev" type="button">← Anterior</button><span id="progress"></span><button id="next" type="button">Siguiente →</button></footer>
+<p class="note">Para explorar otras distribuciones: <a href="https://csstools.io/es/grid-generator" target="_blank" rel="noopener noreferrer">generador visual de CSS Grid</a>. Observa las columnas, filas y separaciones; el código generado puede incluir propiedades que aún no hemos visto.</p>
+</main>
+<script>
+const lessons=[
+{title:"1. Contenedor e hijos",explain:"Grid se activa en el elemento padre. Sus hijos directos se convierten en elementos de la cuadrícula. Sin definir columnas, se colocan en una sola columna.",question:"¿Qué elemento recibe display: grid?",observation:"Fíjate en que las cuatro cajas siguen dentro de un único contenedor.",css:{display:"grid"}},
+{title:"2. Columnas",explain:"grid-template-columns define cuántas columnas hay y cuánto espacio ocupa cada una. Cambia el número: las cajas sobrantes pasan a la fila siguiente.",question:"¿Qué ocurre con la cuarta caja si eliges tres columnas?",observation:"La colocación automática respeta el orden del HTML.",control:{label:"Número de columnas",key:"columns",min:1,max:4,value:3},css:{display:"grid"}},
+{title:"3. La unidad fr",explain:"fr reparte el espacio disponible en partes. Con 1fr 2fr, la segunda columna recibe el doble de espacio flexible que la primera.",question:"¿En qué se diferencia de fijar cada columna en píxeles?",observation:"Cambia la anchura del ejemplo: la proporción se mantiene.",control:{label:"Partes de la columna derecha",key:"ratio",min:1,max:4,value:2},css:{display:"grid"}},
+{title:"4. Separación entre celdas",explain:"gap añade espacio entre filas y columnas sin añadir margen a cada caja. Prueba distintos valores.",question:"¿El espacio aparece también fuera del contenedor?",observation:"gap solo separa las pistas internas.",control:{label:"Separación",key:"gap",min:0,max:40,value:16,unit:"px"},css:{display:"grid","grid-template-columns":"1fr 1fr"}},
+{title:"5. Filas",explain:"grid-template-rows permite definir la altura de las filas. Una fila puede tener más espacio que otra; el contenido también necesita caber.",question:"¿Qué cambia cuando la segunda fila tiene más altura?",observation:"Las columnas y las filas son dos dimensiones distintas.",control:{label:"Altura de la segunda fila",key:"row",min:60,max:170,value:120,unit:"px"},css:{display:"grid","grid-template-columns":"1fr 1fr"}},
+{title:"6. Ocupar varias celdas",explain:"Las líneas de Grid numeran los límites de las columnas y filas. Un elemento puede empezar en una línea y terminar en otra para abarcar varias celdas.",question:"¿Cuántas columnas ocupa la caja 1?",observation:"La caja 1 cruza dos columnas; las demás mantienen su orden.",css:{display:"grid","grid-template-columns":"1fr 1fr 1fr",gap:"10px"},child:".tile:first-child { grid-column: 1 / 3; }"},
+{title:"7. Colocar por filas y columnas",explain:"Con grid-column y grid-row puedes indicar la posición de cada caja. También puedes dejar una celda vacía sin añadir un elemento de relleno.",question:"¿Qué reglas hacen que la caja 4 quede a la derecha en la última fila?",observation:"La caja 1 ocupa dos columnas y la 4 deja un hueco a su izquierda.",css:{display:"grid","grid-template-columns":"1fr 2fr",gap:"10px"},child:".tile:nth-child(1) { grid-column: 1 / 3; grid-row: 1; }\n.tile:nth-child(2) { grid-column: 1; grid-row: 2; }\n.tile:nth-child(3) { grid-column: 2; grid-row: 2; }\n.tile:nth-child(4) { grid-column: 2; grid-row: 3; }"},
+{title:"8. Alinear dentro de las celdas",explain:"align-items decide cómo se colocan verticalmente los elementos dentro de sus áreas de Grid. Compara el resultado con la pantalla anterior: ahora las cajas no ocupan toda la altura de su fila.",question:"¿Qué cambia: la fila o la caja situada dentro de ella?",observation:"La fila conserva su altura; las cajas se centran dentro de ella.",css:{display:"grid","grid-template-columns":"1fr 1fr","grid-template-rows":"120px 120px","align-items":"center",gap:"10px"}},
+{title:"9. Diseño adaptable",explain:"Una consulta de medios cambia las reglas según el ancho de la ventana. El área punteada simula esa ventana: arrastra su borde para ver una o tres columnas.",question:"¿Qué ocurre justo antes y después del punto de cambio?",observation:"En una página real, @media responde al ancho de la ventana del navegador.",control:{label:"Cambio a tres columnas",key:"breakpoint",min:280,max:500,value:360,unit:"px"},css:{display:"grid",gap:"10px"}},
+{title:"10. Grid en sitios públicos",explain:"Abre estas páginas y busca sus filas, columnas y espacios. Son ejemplos de uso de Grid en sitios publicados, no ejercicios para copiar.",question:"¿Qué partes se repiten y cuáles ocupan más espacio?",observation:"El dibujo de la derecha es solo un esquema. Observa los sitios reales en los enlaces.",links:[{label:"Simple Icons: catálogo de iconos",url:"https://simpleicons.org/"},{label:"Grid by Example: estructura de un sitio",url:"https://gridbyexample.com/"}],css:{display:"grid","grid-template-columns":"1fr 1fr 1fr",gap:"10px"}},
+{title:"11. Una abreviatura: repeat()",explain:"Cuando varias columnas tienen el mismo tamaño, repeat() permite escribirlas de forma más corta. Por ejemplo, repeat(3, 1fr) equivale a 1fr 1fr 1fr. No aporta una capacidad nueva: puedes resolver los ejercicios escribiendo cada columna.",question:"¿Qué parte indica cuántas columnas habrá y qué parte indica su ancho?",observation:"Las tres columnas siguen siendo iguales; solo cambia la forma de escribir la regla.",css:{display:"grid","grid-template-columns":"repeat(3, 1fr)",gap:"10px"}}
+];
+const state={};let current=0;
+const demo=document.getElementById("demo"),steps=document.getElementById("steps"),controls=document.getElementById("controls");
+lessons.forEach((lesson,i)=>{const b=document.createElement("button");b.type="button";b.textContent=String(i+1);b.setAttribute("aria-label",lesson.title);b.addEventListener("click",()=>show(i));steps.append(b)});
+function show(i){current=i;const l=lessons[i];document.getElementById("counter").textContent="Concepto "+(i+1)+" de "+lessons.length;document.getElementById("title").textContent=l.title;document.getElementById("explain").textContent=l.explain;document.getElementById("question").textContent=l.question;document.getElementById("observation").textContent=l.observation;document.getElementById("progress").textContent=(i+1)+" / "+lessons.length;document.getElementById("prev").disabled=i===0;document.getElementById("next").disabled=i===lessons.length-1;[...steps.children].forEach((b,n)=>{if(n===i)b.setAttribute("aria-current","step");else b.removeAttribute("aria-current")});controls.replaceChildren();if(l.links)l.links.forEach(({label,url})=>{const a=document.createElement("a");a.href=url;a.target="_blank";a.rel="noopener noreferrer";a.textContent=label;controls.append(a)});if(l.control){const label=document.createElement("label"),span=document.createElement("span"),out=document.createElement("output"),input=document.createElement("input");input.type="range";input.min=l.control.min;input.max=l.control.max;input.value=state[l.control.key]??l.control.value;span.textContent=l.control.label+" ";out.textContent=input.value+(l.control.unit||"");span.append(out);label.append(span,input);controls.append(label);input.addEventListener("input",()=>{state[l.control.key]=Number(input.value);out.textContent=input.value+(l.control.unit||"");render()})}render()}
+function render(){const l=lessons[current],css={...l.css};demo.removeAttribute("style");[...demo.children].forEach(x=>x.removeAttribute("style"));if(current===1)css["grid-template-columns"]=Array(state.columns??3).fill("1fr").join(" ");if(current===2)css["grid-template-columns"]="1fr "+(state.ratio??2)+"fr";if(current===3)css.gap=(state.gap??16)+"px";if(current===4)css["grid-template-rows"]="70px "+(state.row??120)+"px";if(current===5)demo.children[0].style.gridColumn="1 / 3";if(current===6){["1 / 3","1","2","2"].forEach((v,i)=>demo.children[i].style.gridColumn=v);["1","2","2","3"].forEach((v,i)=>demo.children[i].style.gridRow=v)}if(current===8){const bp=state.breakpoint??360;css["grid-template-columns"]="1fr";if(document.getElementById("demo-wrap").clientWidth>=bp)css["grid-template-columns"]="1fr 1fr 1fr"}Object.entries(css).forEach(([k,v])=>demo.style.setProperty(k,v));let code=".demo {\n"+Object.entries(css).map(([k,v])=>"  "+k+": "+v+";").join("\n")+"\n}";if(l.child)code+="\n"+l.child;if(current===8)code=".demo {\n  display: grid;\n  gap: 10px;\n  grid-template-columns: 1fr;\n}\n@media (min-width: "+(state.breakpoint??360)+"px) {\n  .demo { grid-template-columns: 1fr 1fr 1fr; }\n}";document.getElementById("code").textContent=code}
+document.getElementById("prev").addEventListener("click",()=>show(current-1));document.getElementById("next").addEventListener("click",()=>show(current+1));new ResizeObserver(()=>{if(current===8)render()}).observe(document.getElementById("demo-wrap"));show(0);
+</script>
+</body>
+</html>
